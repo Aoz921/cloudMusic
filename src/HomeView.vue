@@ -36,7 +36,7 @@
                 <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold"/>
             </div>
           </div>
-          <ul class="flex w-[98vw] h-[40vw] overflow-auto lis menu mt-[3vw] ml-[2vw]">
+          <ul class="flex w-[98vw] overflow-auto lis menu mt-[3vw] ml-[2vw]">
             <li v-for="item in personalized" :key="item.id" class="w-[29vw] h-[40vw] text-[1vw] mr-[2vw]">
                 <img :src="item.picUrl" class="w-[29vw] h-[30vw] rounded-[3vw]">
                 <p>{{item.name}}</p>
@@ -88,7 +88,28 @@
             </li>
           </ul>
         </section>
-        
+        <!-- 音乐日历 -->
+        <section class="mt-[8vw]">
+          <div class="flex items-center ml-4">
+              <span class="text-[4vw] font-bold">音乐日历</span>
+              <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold" />
+          </div>
+          <div>
+            <ul class="w-[95%] mx-auto  overflow-hidden bg-white rounded-xl">
+              <li
+                v-for="item in Calendar"
+                :key="item.id"
+                class="flex justify-between items-center w-[90%] mx-auto mt-[10vw] mb-[10vw]"
+              >
+                <div>
+                  <div>{{ dayjs(item.onlineTime).format('MM/DD ') }}</div>
+                  <div>{{ item.title }}</div>
+                </div>
+                <img :src="item.imgUrl" alt="" class="w-[15vw] h-[15vw] rounded-md"/>
+              </li>
+            </ul>
+          </div>
+        </section>
     </div>
 </template>
 
@@ -104,7 +125,8 @@
                 playlists:[],
                 personalized:[],
                 newSong:[],
-                topList:[]
+                topList:[],
+                Calendar:[]
             };
         },
         methods:{
@@ -153,6 +175,18 @@
               // console.log(this.personalized);
             })
             .catch((err) => console.log(err));
+            axios
+            .get(
+              'https://netease-cloud-music-api-five-roan-88.vercel.app/calendar?startTime=1687836243619&endTime=1687922643618'
+                    )
+            .then((res) => {
+              console.log(res);
+              this.Calendar = res.data.data.calendarEvents; 
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+
         },
         
     }
