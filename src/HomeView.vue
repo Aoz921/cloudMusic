@@ -37,7 +37,7 @@
             </div>
           </div>
           <ul class="flex w-[98vw] overflow-auto lis menu mt-[3vw] ml-[2vw]">
-            <li v-for="item in personalized" :key="item.id" class="w-[29vw] h-[40vw] text-[1vw] mr-[2vw]">
+            <li v-for="item in personalized" :key="item.id" class="w-[29vw] text-[1vw] mr-[2vw]">
                 <img :src="item.picUrl" class="w-[29vw] h-[30vw] rounded-[3vw]">
                 <p>{{item.name}}</p>
             </li>
