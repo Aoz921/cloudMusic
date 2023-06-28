@@ -1,6 +1,6 @@
 <template>
-     <div class="bg-gradient-to-b from-red-100 via-blue-100 bg-opacity-20 box">
-        <header class="w-[97vw] h-[10vw] relative mt-4">
+     <div class="bg-gradient-to-b from-red-100 via-blue-100 bg-gray-200 bg-opacity-20 box">
+        <!-- <header class="w-[97vw] h-[10vw] relative mt-4">
             <div class="flex justify-around items-center">
                 <Icon icon="pepicons-pop:menu"  class="text-[6vw]" />
                 <div class="relative">
@@ -9,9 +9,11 @@
                 </div>
                 <Icon icon="ph:microphone-bold"  class="text-[6vw]" />
             </div>
-        </header>
+        </header> -->
+        <headView :head="head"></headView>
         
-        <section>
+        <!-- 轮播图 -->
+        <!-- <section>
           <div class="swiper mySwiper mt-[4.537vw]">
             <div class="swiper-wrapper">
                 <div class="swiper-slide " v-for="item in menu" :key="item.id">
@@ -20,16 +22,25 @@
             </div>
             <div class="swiper-pagination"></div>
           </div>
-        </section>
-        <section class="w-[90%] mx-auto">
+        </section> -->
+        <bannerView :menu="menu"></bannerView>
+
+        <!-- 菜单 -->
+        <!-- <section class="w-[90%] mx-auto">
           <ul class="menu flex overflow-auto mt-6">
             <li v-for="item in menulist" :key="item.id" class=" w-[18vw] text-center flex-none">
               <img :src="item.iconUrl" alt="" class=" w-[14vw] red-image  mx-auto">
               <span class=" whitespace-nowrap text-sm">{{ item.name }}</span>
             </li>
           </ul>
-        </section>
-        <section>
+          <div class="menu flex overflow-auto mt-6">
+            <menulists v-for="item in menulist" :key="item.id" class=" w-[18vw] text-center flex-none" :menulist="item"></menulists>
+          </div>
+        </section> -->
+        <menulists :menulist="menulist"></menulists>
+        
+        <!-- 推荐歌单 -->
+        <!-- <section>
           <div>
             <div class=" ml-[4vw] mt-[3vw] h-[5vw] leading-[5vw] flex items-center">
                 <span class="text-[4vw] font-bold">推荐歌单</span>
@@ -42,8 +53,11 @@
                 <p>{{item.name}}</p>
             </li>
           </ul>
-        </section>
-        <section class="pl-[2vw] mt-5">
+        </section> -->
+        <recommend-view :personalized="personalized"></recommend-view>
+
+        <!-- 新歌新碟 -->
+        <!-- <section class="pl-[2vw] mt-5">
           <div class="flex items-center">
               <span class="text-[4vw] font-bold">新歌新碟\数字专辑</span>
               <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold" />
@@ -61,8 +75,11 @@
               </div>
             </li>
           </ul>
-        </section>
-        <section class="pl-[3.5vw] mt-8">
+        </section> -->
+        <newSong :newSong="newSong"></newSong>
+
+        <!-- 排行榜 -->
+        <!-- <section class="pl-[3.5vw] mt-8">
           <div class="flex items-center">
               <span class="text-[4vw] font-bold">排行榜</span>
               <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold" />
@@ -87,9 +104,32 @@
               </div>
             </li>
           </ul>
+        </section> -->
+        <theCharts :topList="topList"></theCharts>
+
+        <!-- 热门话题 -->
+        <section class="pl-[4vw]">
+          <div class="mt-[6vw] mb-[4vw]">
+            <span class="text-[4vw] font-bold">热门话题</span>
+          </div>
+          <ul class="flex overflow-auto menu">
+            <li v-for="item in hotTopic" class="flex-none w-[95%] bg-indigo-200 rounded-md p-[3vw] mr-[2.3vw]">
+              <div class="flex items-center">
+                <Icon icon="icon-park-solid:topic" color="white" />
+                <span class="text-[4.1vw] text-white font-blod">{{ item.uiElement.labelTexts[0] }}</span>
+              </div>
+              <div class="flex justify-around items-center">
+                <div class="text-[2.5vw] text-white">{{ item.uiElement.mainTitle.title }}</div>
+                <div>
+                  <img :src="item.uiElement.image.imageUrl" alt="" class="w-[12vw] h-[12vw] rounded-md">
+                </div>
+              </div>
+            </li>
+          </ul>
         </section>
+
         <!-- 音乐日历 -->
-        <section class="mt-[8vw]">
+        <!-- <section class="mt-[8vw]">
           <div class="flex items-center ml-4">
               <span class="text-[4vw] font-bold">音乐日历</span>
               <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold" />
@@ -109,14 +149,32 @@
               </li>
             </ul>
           </div>
-        </section>
+        </section> -->
+        <musicCalendar :Calendar="Calendar"></musicCalendar>
     </div>
 </template>
 
 <script>
  import axios from 'axios';
-
+ import menulists from './components/menulists.vue'
+ import RecommendView from './components/RecommendView.vue'
+ import newSong from './components/newSong.vue'
+ import theCharts from './components/theCharts.vue'
+ import musicCalendar from './components/musicCalendar.vue'
+ import bannerView from './components/bannerView.vue'
+ import headView from './components/headView.vue'
+    
     export default{
+        name:'HomeView',
+        components:{
+          menulists,
+          RecommendView,
+          newSong,
+          theCharts,
+          musicCalendar,
+          bannerView,
+          headView
+        },
         data() {
             return{
                 menu:[],
@@ -126,7 +184,8 @@
                 personalized:[],
                 newSong:[],
                 topList:[],
-                Calendar:[]
+                Calendar:[],
+                hotTopic:[]
             };
         },
         methods:{
@@ -155,6 +214,7 @@
                 this.menu=res.data.data.blocks[0].extInfo.banners; 
                 this.newSong = res.data.data.blocks[5].creatives;
                 this.topList = res.data.data.blocks[3].creatives;
+                this.hotTopic = res.data.data.blocks[1].creatives
                 console.log(this.topList);
             })
             .catch((err) => console.log(err));
