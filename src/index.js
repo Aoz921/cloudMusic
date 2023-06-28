@@ -4,7 +4,16 @@ import { Icon } from '@iconify/vue2';
 import BScroll from '@better-scroll/core'
 // import indexView from '@/views/IndexView.vue';
 import HomeView from './HomeView.vue';
+import { Swipe, SwipeItem } from 'vant';
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
+Vue.prototype.dayjs = dayjs;
+
+
 Vue.component('Icon', Icon);
+Vue.use(Swipe);
+Vue.use(SwipeItem);
 
 const vm = new Vue({
     el: '#app',
