@@ -1,9 +1,14 @@
 <template>
-    <section class="mt-[8vw]">
-          <div class="flex items-center ml-4">
-              <span class="text-[4vw] font-bold">音乐日历</span>
-              <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold" />
-          </div>
+    <section class="mt-6">
+      <div class="w-[95%] mx-auto mt-[3vw] h-[5vw] leading-[5vw] flex justify-between items-center mb-3">
+              <div class="flex items-center">
+                <span class="text-[4vw] font-bold">音乐日历</span>
+                <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold"/>
+              </div>
+              <div class="flex items-center">
+                <Icon icon="ant-design:more-outlined" />
+              </div>
+            </div>
           <div>
             <ul class="w-[95%] mx-auto  overflow-hidden bg-white rounded-xl">
               <li
@@ -24,6 +29,6 @@
 <script>
     export default{
         name:'musicCalendar',
-        props:['Calendar']
+        props:['Calendar'],
     }
 </script>

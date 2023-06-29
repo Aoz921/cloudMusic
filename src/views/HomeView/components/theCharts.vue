@@ -1,11 +1,16 @@
 <template>
-    <section class="pl-[3.5vw] mt-8">
-          <div class="flex items-center">
-              <span class="text-[4vw] font-bold">排行榜</span>
-              <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold" />
-          </div>
+    <section class=" mt-8">
+      <div class="w-[95%] mx-auto mt-[3vw] h-[5vw] leading-[5vw] flex justify-between items-center">
+              <div class="flex items-center">
+                <span class="text-[4vw] font-bold">排行榜</span>
+                <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold"/>
+              </div>
+              <div class="flex items-center">
+                <Icon icon="ant-design:more-outlined" />
+              </div>
+            </div>
           <ul class="flex mt-3 overflow-auto menu">
-            <li v-for="item in topList " class="w-[95%] flex-none mr-[3.5vw] bg-white p-2 rounded-xl">
+            <li v-for="item in topList " class="w-[95%] flex-none mr-[3.5vw] bg-white p-2 rounded-xl ml-[2vw]">
               <div class="flex items-center">
                 <span class="text-[4vw] font-bold">{{ item.uiElement.mainTitle.title }}</span>
                 <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold"/>

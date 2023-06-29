@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <header class="w-[97vw] h-[10vw] relative mt-4">
             <div class="flex justify-around items-center">
                 <Icon icon="pepicons-pop:menu"  class="text-[6vw]" />
@@ -15,4 +15,4 @@
         name:'headView',
         props:['head']
     }
-</script>
+</script> -->
