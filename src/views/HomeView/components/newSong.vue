@@ -17,8 +17,9 @@
                 </div>
                 <div class="flex flex-col justify-center ml-4">
                   <p class="text-[3.6vw] font-bold">{{ key.uiElement.mainTitle.title }}</p>
-                  <p class="text-[2vw] text-gray-500">{{ key.uiElement.subTitle.rcmdText }}</p>
+                  <p class="text-[2vw] text-gray-500">{{ key.uiElement.subTitle.rcmdText }} - {{ key.resourceExtInfo.artists[0].name }}</p>
                 </div>
+                
               </div>
             </li>
           </ul>

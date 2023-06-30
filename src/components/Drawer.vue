@@ -3,14 +3,14 @@
       <transition :name="direction">
         <div
           v-show="visible"
-          class="w-screen h-[220px] bg-white absolute z-[999]"
+          class="w-screen h-[220px] bg-white fixed z-[999] overflow-auto"
           :style="[drawerContentStyle, { width }]"
         >
           <div>
             <slot name="header">
               <div class="flex justify-between items-center">
                 <p>{{ title }}</p>
-                <Icon @click.native="closeDrawer" icon="clarity:times-line" />
+                <!-- <Icon @click.native="closeDrawer" icon="clarity:times-line" /> -->
               </div>
             </slot>
           </div>
@@ -22,7 +22,7 @@
       <div
         v-if="visible"
         ref="drawerMask"
-        class="bg-black opacity-20 absolute top-0 right-0 bottom-0 left-0 z-[998]"
+        class="bg-black opacity-20 fixed top-0 right-0 bottom-0 left-0 z-[998]"
       ></div>
     </div>
   </template>
@@ -36,7 +36,7 @@
       },
       title: {
         type: String,
-        default: '默认标题',
+        // default: '默认标题',
       },
       direction: {
         type: String,
@@ -108,4 +108,14 @@
   .btt-leave {
     transform: translateY(0);
   }
+
+  .ltr-enter,.ltr-leave-to{
+        transform: translateX(-100%);
+    }
+    .ltr-enter-active,.ltr-leave-active {
+        transition: all ease-in-out 1s;
+    }
+    .ltr-enter-to,.ltr-leave{
+        transform: translateX(0);
+    }
   </style>

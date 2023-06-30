@@ -9,6 +9,8 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Drawer from '@/components/Drawer.vue';
 import Vant from 'vant';
 import 'vant/lib/index.css';
+import { Switch } from 'vant';
+Vue.use(Switch);
 
 Vue.use(Vant);
 dayjs.extend(relativeTime);

@@ -2,7 +2,9 @@
      <div class="bg-gradient-to-b from-red-100 via-blue-100 bg-gray-200 bg-opacity-20 box">
         <header class="w-[97vw] h-[10vw] relative mt-4">
             <div class="flex justify-around items-center">
-                <Icon icon="pepicons-pop:menu"  class="text-[6vw]" />
+                <div @click="visi = !visi">
+                  <Icon icon="pepicons-pop:menu"  class="text-[6vw]"/>
+                </div>
                 <div class="relative">
                     <input type="text" placeholder="Peaches Justin Bieber" class="w-[70vw] h-[6vw] rounded-3xl pl-8  border-amber-400 bg-gradient-to-r from-red-100 via-blue-100  bg-opacity-20">
                     <Icon icon="carbon:search" color="Seashell3" class="text-[6vw] absolute bottom-0 left-[4px]" />
@@ -69,12 +71,12 @@
           <ul class="flex w-[98vw] overflow-auto lis menu ml-[2vw]">
             <div class="w-[31vw] h-[31vw]  mr-[2vw] ">
               <div class="w-[31vw] h-[31vw] border-[1px] overflow-hidden relative rounded-[3vw]">
+                <div class="absolute top-[4%] right-[8%] font-[800] text-[#fff] flex items-center z-30">
+                  <Icon icon="ion:infinite-outline" class="text-[#fff] w-[6vw] h-[6vw]"/>
+                </div>
                 <transition name="abc" v-for="(item, index) in resources" :key="item.id">
                   <div v-if="visible === index" class="absolute top-0 left-0&quot;" >
                     <img :src="item.uiElement.image.imageUrl" alt="" class="w-[31vw] h-[31vw] rounded-[3vw]" />
-                    <div class="absolute top-[2vw] right-[2.5vw] font-[800] text-[#fff] flex items-center">
-                      <Icon icon="ion:infinite-outline" class="text-[#fff] w-[8vw] h-[8vw]"/>
-                    </div>
                   </div>
                 </transition>
               </div>
@@ -211,9 +213,316 @@
             </ul>
           </div>
         </section> -->
-        <musicCalendar :Calendar="Calendar"></musicCalendar>
+        <musicCalendar :Calendar="Calendar" ></musicCalendar>
 
-        
+        <Drawer :visible.sync="visi" direction="ltr">
+          <template #header>
+                <div class="flex justify-between items-center w-[90%] mx-auto mt-[4vw]">
+                    <div class="flex items-center">
+                        <img src="http://www.hhhtrc.com/uploads/allimg/201122/2226391X2-6.jpg" alt="" class="rounded-full w-[7vw] h-[7vw] mr-[3vw]">
+                        <p>波风面麻</p>
+                        <Icon icon="ep:arrow-left-bold" color="#333" width="15" :horizontalFlip="true" :verticalFlip="true" class=""/>
+                    </div>
+                    <Icon icon="tabler:scan" color="black" width="20" class="" />
+                </div>
+            </template>
+            <div class="mt-[4vw]"> 
+                <!-- 黑胶vip -->
+                <div class="w-[76vw] h-[32vw] bg-[#524746] rounded-xl p-[4vw] box-border mx-auto">
+                    <div class="border-b border-[#827773] pb-[3.8vw] box-border">
+                        <div class="flex justify-between">
+                            <div class="flex items-center">
+                                <p class="text-[#fde4df] font-bold text-[4vw]">黑胶VIP·贰</p>
+                                <div class="w-[12vw] h-[2vw] bg-[#343230] rounded-xl mx-[3vw]">
+                                    <div class="bg-[#ead2cb] h-[100%] rounded-xl" style="width: 60%;"></div>
+                                </div>
+                                <span class="text-[#827773]">v3</span>
+                            </div>
+                            <p class="text-[2.66vw] text-[#968884] border border-[#968884] rounded-xl w-[16vw] h-[6vw] text-center leading-[6vw] float-right">会员中心</p>
+                        </div>
+                        <div class="flex mt-[1.5vw]">
+                            <p class="text-[2.8vw] text-[#968884]">礼品卡 | 毕业快乐！</p>
+                            <Icon icon="game-icons:graduate-cap" color="#454341" width="15" :horizontalFlip="true" />
+                        </div>
+                    </div>
+                    <div class="text-[#968884] mt-[4vw] text-[2vw]">您的黑胶VIP即将到期，点击立即续费</div>
+                </div>
+                <!-- 我的消息 -->
+                <div class="rounded-xl p-[4vw] pr-[0] box-border bg-[white] mt-[3.9vw]">
+                    <ul>
+                        <li class="flex justify-between items-center pb-[4vw] box-border border-b border-[#f3f3f3] mt-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="heroicons:envelope" color="#343434" width="28" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">我的消息</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="bg-[red] text-[white] rounded-xl text-center w-[10vw] h-[5vw] leading-[5vw]">99+</span>
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true" class="mr-[4vw]"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border border-b border-[#f3f3f3] mt-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="cib:shell" color="#343434" width="20" :horizontalFlip="true" :verticalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">云贝中心</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[#999] text-[4vw]">签到</span>
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true" class="mr-[4vw]"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] mt-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="icons8:idea" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">创作者中心</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true" class="mr-[4vw]"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 音乐服务 -->
+                <div class="rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw]">
+                    <p class="px-[4vw] pb-[4vw] border-b border-[#f3f3f3] text-[#999]">音乐服务</p>
+                    <ul class="px-[4vw]">
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw] ">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ph:star-of-david" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">测趣</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[#999]">点击查看今日运势</span>
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ion:ticket-outline" color="#343434" width="20" :horizontalFlip="true" :verticalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">云村有票</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ion:cube-outline" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">多多西西口袋</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="icon-park-outline:shopping-bag" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">商城</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="streamline:health-medical-heart-rate-health-beauty-information-data-beat-pulse-monitor-heart-rate-info" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">Beat专区</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[#999]">顶尖制作邀你创作</span>
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="clarity:bell-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">口袋彩铃</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="mingcute:game-1-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">游戏专区</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[#999]">音乐浇灌治愈花园</span>
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 其他 -->
+                <div class="rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw]">
+                    <p class="px-[4vw] pb-[4vw] border-b border-[#f3f3f3] text-[#999]">其他</p>
+                    <ul class="px-[4vw]">
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw] ">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ri:settings-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">设置</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="gg:moon" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">深色模式</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <van-switch v-model="checked" size="22px" active-color="#ee0a24" inactive-color="#dcdee0" />
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="clarity:alarm-clock-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">定时关闭</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="iconoir:t-shirt" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">个性装扮</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ph:headset-duotone" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">边听边存</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[#999]">未开启</span>
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="carbon:radio" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">在线听歌免流量</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ant-design:stop-outlined" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">音乐黑名单</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ant-design:safety-outlined" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">青少年模式</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-[#999]">未开启</span>
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="mdi:alarm-clock" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">音乐闹钟</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 我的订单 -->
+                <div class="rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw]">
+                    <ul class="px-[4vw]">
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw] ">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="fluent-mdl2:activate-orders" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">我的订单</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ion:ticket-outline" color="#343434" width="20" :horizontalFlip="true" :verticalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">优惠券</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ri:customer-service-2-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">我的客服</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ri:share-circle-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">分享网易云音乐</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="carbon:license-third-party" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">个人信息收集与使用清单</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="carbon:radio" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">个人信息第三方共享清单</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="material-symbols:health-and-safety-outline" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">个人信息与隐私保护</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                        <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
+                            <div class="flex justify-between items-center">
+                                <Icon icon="mdi:about-circle-outline" color="#343434" width="20" :horizontalFlip="true" />
+                                <span class="text-[4vw] ml-[4vw]">关于</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true"/>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <!-- 退出登录 -->
+                <div class="rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw] text-center text-[red] text-[4vw]">退出登录/关闭</div>
+            </div>
+        </Drawer>
     </div>
 </template>
 
@@ -237,9 +546,7 @@
           theCharts,
           musicCalendar,
           bannerView,
-          // headView,
-          // Panel
-        },
+      },
         data() {
             return{
                 // drawerVisible: true,
@@ -255,12 +562,14 @@
                 hotTopic:[],
                 // resources:[],
                 visible: 0,
-                resourceData: '',
+                resourceData:'',
                 resources: [],
                 show:false,
-                today: new Date().getTime(),
-                yesterdayTimeStamp: new Date().getTime() - 86400000,
-                mingtian: new Date().getTime() - 1,
+                visi:false,
+                checked:false,
+                // today: new Date().getTime(),
+                // yesterdayTimeStamp: new Date().getTime() - 86400000,
+                // mingtian: new Date().getTime() - 1,
             };
         },
         mounted() {
@@ -268,14 +577,25 @@
         },
         methods:{
           fetchCalendar() {
+            let nowDate = new Date()
+            // let start = new Date(`${nowDate.getFullYear()}-${nowDate.getMonth()+1}-${nowDate.getDate()} 00:00:00`)
+            // let end = new Date(`${nowDate.getFullYear()}-${nowDate.getMonth()+1}-${nowDate.getDate()} 23:59:59`)
+            let start = nowDate.getTime();
+            nowDate.setDate(nowDate.getDate()+1)
+            let end = nowDate.getTime()
               axios
                 .get(
-                  `https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/calendar?startTime=${this.yesterdayTimeStamp}&endTime=${this.mingtian}`
+                  `https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/calendar?startTime=${start}&endTime=${end}`
                 )
                 .then((res) => {
+                  console.log(res.data.data.calendarEvents)
                   this.Calendar = res.data.data.calendarEvents;
-                  // this.totalData = this.calendar.length;
+                  // let luckday =  Calendar.filter((item,index)=>{
+                  //   return index<2
+                  // })
+                  // this.Calendar = luckday
                 });
+
             },
             toggleMenu(name){
                 this.activeMenuItem=name;
@@ -291,9 +611,10 @@
             )
             .then((res)=>{
                 this.playlists=res.data.playlists;
+                
             });
             },
-            animateItems() {
+          animateItems() {
             setInterval(() => {
               this.visible++;
               if (this.visible === this.resources.length) {
@@ -324,6 +645,7 @@
                 this.topList = res.data.data.blocks[3].creatives;
                 this.hotTopic = res.data.data.blocks[1].creatives.slice(1);
                 this.resources = res.data.data.blocks[1].creatives[0].resources;
+                this.resourceData =this.resources[0].uiElement.mainTitle.title;
                 console.log(this.topList);
             })
             .catch((err) => console.log(err));
@@ -344,17 +666,6 @@
               // console.log(this.personalized);
             })
             .catch((err) => console.log(err));
-            axios
-            .get(
-              'https://netease-cloud-music-api-five-roan-88.vercel.app/calendar?startTime=1687836243619&endTime=1687922643618'
-                    )
-            .then((res) => {
-              console.log(res);
-              this.Calendar = res.data.data.calendarEvents; 
-            })
-            .catch((err) => {
-              console.log(err);
-            });
 
         },
         
@@ -377,8 +688,8 @@
         align-items: center;
       }
       .swiper-slide>img{
-        width: 84vw;
-        height: 37vw;
+        width: 94vw;
+        height: 40vw;
         border-radius: 2vw;
       }
 
