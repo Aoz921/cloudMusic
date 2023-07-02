@@ -1,15 +1,5 @@
 <template>
-    <section class=" mt-5">
-      <div class="w-[95%] mx-auto mt-[3vw] h-[5vw] leading-[5vw] flex justify-between items-center">
-              <div class="flex items-center">
-                <span class="text-[4vw] font-bold">新歌新碟\数字专辑</span>
-                <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold"/>
-              </div>
-              <div class="flex items-center">
-                <Icon icon="ant-design:more-outlined" />
-              </div>
-            </div>
-          <ul class="flex overflow-auto menu">
+          <div class="flex overflow-auto menu">
             <li  v-for="item in newSong" :key="item.id" class="flex-none w-[90%] ml-[2vw]">
               <div v-for="key in item.resources" class="flex mt-4">
                 <div>
@@ -22,12 +12,15 @@
                 
               </div>
             </li>
-          </ul>
-    </section>
+          </div>
+           
+          
+         
 </template>
 <script>
     export default{
         name:'newSong',
-        props:['newSong']
+        props:['newSong'],
+        
     }
 </script>

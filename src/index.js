@@ -10,6 +10,10 @@ import Drawer from '@/components/Drawer.vue';
 import Vant from 'vant';
 import 'vant/lib/index.css';
 // import { Switch } from 'vant';
+// import Vant from 'vant';
+// import 'vant/lib/index.css';
+// Vue.use(Vant);
+
 import Switch  from '@/components/Switch.vue';
 Vue.component('v-Switch', Switch);
 
@@ -45,6 +49,18 @@ const vm = new Vue({
             },
           },
         });
+      },
+      handleTouchStart(event) {
+        this.swiper.autoplay.stop(); // 停止自动播放
+        // 处理手指触摸事件
+      },
+      handleTouchEnd() {
+        // 处理手指滑动结束事件
+        // 重新启动自动播放
+        this.startAutoPlay();
+      },
+      startAutoPlay() {
+        this.swiper.autoplay.start(); // 启动自动播放
       }
     }
   });
