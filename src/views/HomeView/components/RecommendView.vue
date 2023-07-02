@@ -12,7 +12,7 @@
               }}</span>
             </div>
           </div>
-          <p class="line-clamp-2 text-[2.78vw] text-[#3E4759] scroll-item">{{item.uiElement.mainTitle.title}}</p>
+          <p class="line-clamp-2 text-[2.78vw] text-[#3E4759] scroll-item dark:text-[#c0c0c3]">{{item.uiElement.mainTitle.title}}</p>
     </li>
   </div>
        

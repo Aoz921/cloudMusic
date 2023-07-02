@@ -3,7 +3,7 @@
       <div class="w-[95%] mx-auto mt-[3vw] h-[5vw] leading-[5vw] flex justify-between items-center mb-3">
               <div class="flex items-center">
                 <span class="text-[4vw] font-bold">音乐日历</span>
-                <div class="flex items-center bg-gray-200 rounded-xl h-[4vw] leading-[4vw] ml-[2vw]">
+                <div class="flex text-[black] items-center bg-gray-200 rounded-xl h-[4vw] leading-[4vw] ml-[2vw] dark:bg-[#24242b] dark:text-[#e9e9ea]">
                   <span class="text-[2vw] mt-[0.5vw]">今日{{Calendar.length}}条</span>
                   <Icon icon="bi:chevron-right" class=" text-[2vw] font-bold"/>
                 </div>
@@ -14,7 +14,7 @@
               </div>
             </div>
           <div>
-            <ul class="w-[95%] mx-auto  overflow-hidden bg-white rounded-xl">
+            <ul class="w-[95%] mx-auto  overflow-hidden bg-white rounded-xl dark:bg-[#282830] ">
               <li
                 v-for="item in num"
                 :key="item.id"

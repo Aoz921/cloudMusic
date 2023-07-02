@@ -1,27 +1,35 @@
 <template>
     <div :class="{dark:switchCheckStatus}">
-      <div class="box   text-[#000] dark:bg-gray-900 dark:text-[#fff]"
-      :style="{act:true}"
-      :class="switchCheckStatus?'bg-black':'custom-gradient'"
+      <div class=" bg-[#f7f9fc]  dark:bg-[#1b1b23] dark:text-[#fff]"
       >
-      <v-Switch v-model="switchCheckStatus" ></v-Switch>
-        <header class="w-[97vw] h-[10vw] relative mt-4">
+      
+        <header class="pl-[4vw] pr-[4vw]  relative mx-auto pt-4" :class="switchCheckStatus?'custom-gradient1':'custom-gradient'">
             <div class="flex justify-around items-center">
                 <div @click="visi = !visi">
                   <Icon icon="pepicons-pop:menu"  class="text-[6vw]"/>
                 </div>
                 <div class="relative">
-                    <input type="text" placeholder="Peaches Justin Bieber" class="w-[70vw] h-[6vw] rounded-3xl pl-8  border-amber-400 bg-gradient-to-r from-red-100 via-blue-100  bg-opacity-20">
+                    <input type="text" placeholder="Peaches Justin Bieber" class="w-[70vw] h-[6vw] rounded-3xl pl-8 border-[0.5vw] border-[#c6c6f5] dark:border-[#33233f]" :class="switchCheckStatus?'inp-gradient1':'inp-gradient'">
                     <Icon icon="carbon:search" color="Seashell3" class="text-[6vw] absolute bottom-0 left-[4px]" />
                 </div>
                 <Icon icon="ph:microphone-bold"  class="text-[6vw]" />
             </div>
+            <section class="mt-[4vw]">
+                  <div class="swiper mySwiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide " v-for="item in menu" :key="item.id">
+                            <img :src="item.pic" alt="" class="w-[94vw] h-[35.741vw]  rounded-2xl">
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                  </div>
+            </section>
         </header>
         
         
         <!-- 轮播图 -->
         
-        <bannerView :menu="menu"></bannerView>
+        <!-- <bannerView :menu="menu"></bannerView> -->
 
         <!-- 菜单 -->
        
@@ -43,7 +51,7 @@
           </div>
           <ul class="flex w-[98vw] overflow-auto lis menu ml-[2vw]">
             <div class="w-[31vw] h-[31vw]  mr-[2vw] ">
-              <div class="w-[31vw] h-[31vw] border-[1px] overflow-hidden relative rounded-[3vw]">
+              <div class="w-[31vw] h-[31vw]  overflow-hidden relative rounded-[3vw]">
                 <div class="absolute top-[4%] right-[8%] font-[800] text-[#fff] flex items-center z-30">
                   <Icon icon="ion:infinite-outline" class="text-[#fff] w-[6vw] h-[6vw]"/>
                 </div>
@@ -53,7 +61,7 @@
                   </div>
                 </transition>
               </div>
-              <p class="text-[2.78vw] text-[#3E4759] scroll-item line-clamp-2">
+              <p class="text-[2.78vw] text-[#3E4759] scroll-item line-clamp-2 dark:text-[#c0c0c3]">
                 {{ resourceData }}
               </p>
             </div>
@@ -106,7 +114,7 @@
               </div>
             </div>
           <ul class="flex overflow-auto menu">
-            <li v-for="item in hotTopic" class="flex-none w-[95%] bg-indigo-200 rounded-md p-[3vw] ml-[2.3vw]">
+            <li v-for="item in hotTopic" class="flex-none w-[95%] bg-indigo-200 rounded-md p-[3vw] ml-[2.3vw] dark:bg-[#282830] ">
               <div class="flex items-center">
                 <Icon icon="icon-park-solid:topic" color="white" />
                 <span class="text-[4.1vw] text-white font-blod">{{ item.uiElement.labelTexts[0] }}</span>
@@ -125,20 +133,20 @@
        
         <musicCalendar :Calendar="Calendar" ></musicCalendar>
 
-        <Drawer :visible.sync="visi" direction="ltr">
+        <Drawer :visible.sync="visi" direction="ltr" class=" dark:bg-[#151515] dark:text-[#fff]">
           <template #header>
                 <div class="flex justify-between items-center w-[90%] mx-auto mt-[4vw]">
                     <div class="flex items-center">
                         <img src="http://www.hhhtrc.com/uploads/allimg/201122/2226391X2-6.jpg" alt="" class="rounded-full w-[7vw] h-[7vw] mr-[3vw]">
                         <p>波风面麻</p>
-                        <Icon icon="ep:arrow-left-bold" color="#333" width="15" :horizontalFlip="true" :verticalFlip="true" class=""/>
+                        <Icon icon="ep:arrow-left-bold"  width="15" :horizontalFlip="true" :verticalFlip="true" class="dark:text-[#fff]"/>
                     </div>
-                    <Icon icon="tabler:scan" color="black" width="20" class="" />
+                    <Icon icon="tabler:scan"  width="20" class="dark:text-[#fff]" />
                 </div>
             </template>
             <div class="mt-[4vw]"> 
                 <!-- 黑胶vip -->
-                <div class="w-[76vw] h-[32vw] bg-[#524746] rounded-xl p-[4vw] box-border mx-auto">
+                <div class="w-[76vw] h-[32vw]  rounded-xl p-[4vw] box-border mx-auto bg-gradient-to-tr from-[#2d2b2b] via-[#493f3e] to-[#4b4040] ">
                     <div class="border-b border-[#827773] pb-[3.8vw] box-border">
                         <div class="flex justify-between">
                             <div class="flex items-center">
@@ -152,17 +160,16 @@
                         </div>
                         <div class="flex mt-[1.5vw]">
                             <p class="text-[2.8vw] text-[#968884]">礼品卡 | 毕业快乐！</p>
-                            <Icon icon="game-icons:graduate-cap" color="#454341" width="15" :horizontalFlip="true" />
                         </div>
                     </div>
                     <div class="text-[#968884] mt-[4vw] text-[2vw]">您的黑胶VIP即将到期，点击立即续费</div>
                 </div>
                 <!-- 我的消息 -->
-                <div class="rounded-xl p-[4vw] pr-[0] box-border bg-[white] mt-[3.9vw]">
+                <div class="w-[76vw] mx-auto rounded-xl p-[4vw] pr-[0] box-border  mt-[3.9vw] dark:bg-[#202020]">
                     <ul>
-                        <li class="flex justify-between items-center pb-[4vw] box-border border-b border-[#f3f3f3] mt-[4vw]">
+                        <li class="flex justify-between items-center pb-[4vw] box-border border-b border-[#f3f3f3] mt-[4vw] dark:border-[#363636]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="heroicons:envelope" color="#343434" width="28" :horizontalFlip="true" />
+                                <Icon icon="heroicons:envelope" width="28" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">我的消息</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -170,9 +177,9 @@
                                 <Icon icon="ep:arrow-left" color="#ccc" width="20" :horizontalFlip="true" class="mr-[4vw]"/>
                             </div>
                         </li>
-                        <li class="flex justify-between items-center pb-[4vw] box-border border-b border-[#f3f3f3] mt-[4vw]">
+                        <li class="flex justify-between items-center pb-[4vw] box-border border-b border-[#f3f3f3] mt-[4vw] dark:border-[#363636]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="cib:shell" color="#343434" width="20" :horizontalFlip="true" :verticalFlip="true" />
+                                <Icon icon="cib:shell"  width="20" :horizontalFlip="true" :verticalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">云贝中心</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -182,7 +189,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] mt-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="icons8:idea" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="icons8:idea"  width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">创作者中心</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -192,12 +199,12 @@
                     </ul>
                 </div>
                 <!-- 音乐服务 -->
-                <div class="rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw]">
-                    <p class="px-[4vw] pb-[4vw] border-b border-[#f3f3f3] text-[#999]">音乐服务</p>
+                <div class="w-[76vw] mx-auto rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw] dark:bg-[#202020]">
+                    <p class="px-[4vw] pb-[4vw] border-b border-[#f3f3f3] text-[#999] dark:border-[#363636]">音乐服务</p>
                     <ul class="px-[4vw]">
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw] ">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ph:star-of-david" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="ph:star-of-david"  width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">测趣</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -207,7 +214,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ion:ticket-outline" color="#343434" width="20" :horizontalFlip="true" :verticalFlip="true" />
+                                <Icon icon="ion:ticket-outline" width="20" :horizontalFlip="true" :verticalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">云村有票</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -216,7 +223,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ion:cube-outline" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="ion:cube-outline"  width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">多多西西口袋</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -225,7 +232,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="icon-park-outline:shopping-bag" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="icon-park-outline:shopping-bag"  width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">商城</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -234,7 +241,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="streamline:health-medical-heart-rate-health-beauty-information-data-beat-pulse-monitor-heart-rate-info" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="streamline:health-medical-heart-rate-health-beauty-information-data-beat-pulse-monitor-heart-rate-info"  width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">Beat专区</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -244,7 +251,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="clarity:bell-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="clarity:bell-line"  width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">口袋彩铃</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -253,7 +260,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="mingcute:game-1-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="mingcute:game-1-line" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">游戏专区</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -264,12 +271,12 @@
                     </ul>
                 </div>
                 <!-- 其他 -->
-                <div class="rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw]">
-                    <p class="px-[4vw] pb-[4vw] border-b border-[#f3f3f3] text-[#999]">其他</p>
+                <div class="w-[76vw] mx-auto rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw] dark:bg-[#202020]">
+                    <p class="px-[4vw] pb-[4vw] border-b border-[#f3f3f3] text-[#999] dark:border-[#363636]">其他</p>
                     <ul class="px-[4vw]">
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw] ">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ri:settings-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="ri:settings-line" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">设置</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -278,16 +285,16 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="gg:moon" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="gg:moon" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">深色模式</span>
                             </div>
-                            <!-- <div class="flex justify-between items-center">
-                                <van-switch v-model="checked" size="22px" active-color="#ee0a24" inactive-color="#dcdee0" />
-                            </div> -->
+                            <div class="flex justify-between items-center">
+                              <v-Switch v-model="switchCheckStatus" ></v-Switch>
+                            </div>
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="clarity:alarm-clock-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="clarity:alarm-clock-line" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">定时关闭</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -296,7 +303,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="iconoir:t-shirt" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="iconoir:t-shirt" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">个性装扮</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -305,7 +312,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ph:headset-duotone" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="ph:headset-duotone" width="20" :horizontalFlip="true" class=" dark:text-[#fff]" />
                                 <span class="text-[4vw] ml-[4vw]">边听边存</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -315,7 +322,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="carbon:radio" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="carbon:radio" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">在线听歌免流量</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -324,7 +331,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ant-design:stop-outlined" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="ant-design:stop-outlined" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">音乐黑名单</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -333,7 +340,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ant-design:safety-outlined" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="ant-design:safety-outlined"  width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">青少年模式</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -343,7 +350,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="mdi:alarm-clock" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="mdi:alarm-clock" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">音乐闹钟</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -353,11 +360,11 @@
                     </ul>
                 </div>
                 <!-- 我的订单 -->
-                <div class="rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw]">
+                <div class="w-[76vw] mx-auto rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw] dark:bg-[#202020]">
                     <ul class="px-[4vw]">
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw] ">
                             <div class="flex justify-between items-center">
-                                <Icon icon="fluent-mdl2:activate-orders" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="fluent-mdl2:activate-orders" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">我的订单</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -366,7 +373,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ion:ticket-outline" color="#343434" width="20" :horizontalFlip="true" :verticalFlip="true" />
+                                <Icon icon="ion:ticket-outline" width="20" :horizontalFlip="true" :verticalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">优惠券</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -375,7 +382,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ri:customer-service-2-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="ri:customer-service-2-line" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">我的客服</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -384,7 +391,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="ri:share-circle-line" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="ri:share-circle-line" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">分享网易云音乐</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -393,7 +400,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="carbon:license-third-party" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="carbon:license-third-party" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">个人信息收集与使用清单</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -402,7 +409,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="carbon:radio" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="carbon:radio" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">个人信息第三方共享清单</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -411,7 +418,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="material-symbols:health-and-safety-outline" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="material-symbols:health-and-safety-outline" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">个人信息与隐私保护</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -420,7 +427,7 @@
                         </li>
                         <li class="flex justify-between items-center pb-[4vw] box-border my-[4vw]">
                             <div class="flex justify-between items-center">
-                                <Icon icon="mdi:about-circle-outline" color="#343434" width="20" :horizontalFlip="true" />
+                                <Icon icon="mdi:about-circle-outline" width="20" :horizontalFlip="true" class=" dark:text-[#fff]"/>
                                 <span class="text-[4vw] ml-[4vw]">关于</span>
                             </div>
                             <div class="flex justify-between items-center">
@@ -430,7 +437,7 @@
                     </ul>
                 </div>
                 <!-- 退出登录 -->
-                <div class="rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw] text-center text-[red] text-[4vw]">退出登录/关闭</div>
+                <div class="w-[76vw] mx-auto rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw] text-center text-[red] text-[4vw] dark:bg-[#202020]">退出登录/关闭</div>
             </div>
         </Drawer>
     </div>
@@ -444,7 +451,6 @@
  import newSong from './components/newSong.vue'
  import theCharts from './components/theCharts.vue'
  import musicCalendar from './components/musicCalendar.vue'
- import bannerView from './components/bannerView.vue'
     
     export default{
         name:'HomeView',
@@ -454,7 +460,6 @@
           newSong,
           theCharts,
           musicCalendar,
-          bannerView,
       },
         data() {
             return{
@@ -640,8 +645,26 @@
 
 
 .custom-gradient {
-  background-image: linear-gradient(to bottom, #e6e4f9, #e7e2f7, #f1e5f2);
+  background:  linear-gradient(to bottom, #e6e4f9 ,#eae5fa,#f4e7f3,#f7f9fc);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-blend-mode: screen;
 }
 
- 
+.custom-gradient1 {
+  background-image: linear-gradient(to right, #1c1933,#27192d);
+}
+
+.inp-gradient {
+  background:  linear-gradient(to right, #e6e4f9 ,#eae5fa,#f4e7f3,#f7f9fc);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-blend-mode: screen;
+}
+
+.inp-gradient1 {
+  background-image: linear-gradient(to right, #1c1933,#27192d);
+
+}
+
 </style>

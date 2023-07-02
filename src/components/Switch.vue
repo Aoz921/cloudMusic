@@ -1,10 +1,10 @@
 <template>
-    <div class="w-[60px] h-[30px] rounded-[15px]" 
-        :class="`${value1 ? 'bg-red-400' : 'bg-black'}`"
+    <div class="w-[12vw] h-[6.3vw] rounded-[15px] border-[0.5vw] border-[#e6e6e6]" 
+        :class="`${value1 ? 'bg-[#e45242] border-none' : 'bg-[#fff]'}`"
         @click="toggle">
 
-        <div class="w-[30px] h-[30px] rounded-[15px] bg-white translate-all" 
-        :class= "`${value1 ? 'translate-x-[30px]' : 'translate-x-0'}`">
+        <div class="w-[6vw] h-[6vw] rounded-[15px] bg-white translate-all duration-300 shadow-md" 
+        :class= "`${value1 ? 'translate-x-[6vw]' : 'translate-x-0'}`">
         </div>
     </div>
 </template>

@@ -10,14 +10,14 @@
               </div>
             </div>
           <ul class="flex mt-3 overflow-auto menu">
-            <li v-for="item in topList " class="w-[95%] flex-none mr-[3.5vw] bg-white p-2 rounded-xl ml-[2vw]">
+            <li v-for="item in topList " class="w-[95%] flex-none mr-[3.5vw] bg-white  dark:bg-[#282830] p-2 rounded-xl ml-[2vw]">
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
                   <span class="text-[4vw] font-bold">{{ item.uiElement.mainTitle.title }}</span>
                   <Icon icon="bi:chevron-right" class=" text-[4vw] font-bold"/>
                 </div>
                 <div>
-                  <span class="text-[2vw] text-gray-500">{{  item.uiElement.mainTitle.titleDesc  }}</span>
+                  <span class="text-[2vw] text-gray-500 dark:text-[#a4a4a7]">{{  item.uiElement.mainTitle.titleDesc  }}</span>
                 </div>
                 
               </div>
@@ -30,7 +30,7 @@
                     <span class="ml-4 mr-4 text-orange-200" :style="{color: getTextColor(index+1)}" >{{ index+1 }}</span>
                     <div>
                       <p class="w-[48vw] overflow-hidden text-ellipsis whitespace-nowrap text-[3.4vw] font-bold">{{ key.uiElement.mainTitle.title }}</p>
-                      <p class="text-[1.5vw] text-gray-500">{{ key.resourceExtInfo?.artists[0].name }}</p>
+                      <p class="text-[1.5vw] text-gray-500 dark:text-[#a4a4a7]">{{ key.resourceExtInfo?.artists[0].name }}</p>
                     </div>
                   </div>
                   
