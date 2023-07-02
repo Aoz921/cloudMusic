@@ -2,16 +2,26 @@ import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
 import BScroll from '@better-scroll/core'
-// import indexView from '@/views/IndexView.vue';
 import HomeView from './views/HomeView/HomeView.vue';
 import { Swipe, SwipeItem } from 'vant';
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import Drawer from '@/components/Drawer.vue';
+import Vant from 'vant';
+import 'vant/lib/index.css';
+// import { Switch } from 'vant';
+import Switch  from '@/components/Switch.vue';
+Vue.component('v-Switch', Switch);
+
+Vue.use(Switch);
+
+Vue.use(Vant);
 dayjs.extend(relativeTime);
 Vue.prototype.dayjs = dayjs;
 Vue.component('Icon', Icon);
 Vue.use(Swipe);
 Vue.use(SwipeItem);
+Vue.component('Drawer',Drawer)
 
 const vm = new Vue({
     el: '#app',
