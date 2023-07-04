@@ -113,7 +113,7 @@
         transform: translateX(-100%);
     }
     .ltr-enter-active,.ltr-leave-active {
-        transition: all ease-in-out 1s;
+        transition: all ease-in-out .5s;
     }
     .ltr-enter-to,.ltr-leave{
         transform: translateX(0);

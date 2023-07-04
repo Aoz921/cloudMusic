@@ -1,7 +1,7 @@
 <template>
     
 
-    <div class="flex mt-3 overflow-auto menu">
+    <div class="flex overflow-auto menu">
       <li v-for="item in topList " class="w-[95%] flex-none mr-[3.5vw] bg-white  dark:bg-[#282830] p-2 rounded-xl ml-[2vw]">
               <div class="flex items-center justify-between">
                 <div class="flex items-center">
