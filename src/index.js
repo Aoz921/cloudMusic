@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
-import BScroll from '@better-scroll/core'
 import HomeView from './views/HomeView/HomeView.vue';
 import { Swipe, SwipeItem } from 'vant';
 import dayjs from "dayjs";
@@ -9,12 +8,16 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Drawer from '@/components/Drawer.vue';
 import Vant from 'vant';
 import 'vant/lib/index.css';
+import App from '@/App.vue'
+import router from '@/router/index'
 // import { Switch } from 'vant';
 // import Vant from 'vant';
 // import 'vant/lib/index.css';
 // Vue.use(Vant);
 
 import Switch  from '@/components/Switch.vue';
+import Dialog from './components/Dialog'
+Vue.use(Dialog)
 Vue.component('v-Switch', Switch);
 
 Vue.use(Switch);
@@ -32,7 +35,8 @@ const vm = new Vue({
     data: {
       swiper: null
     },
-    render: h => h(HomeView),
+    router,
+    render: h => h(App),
     mounted() {
       this.initSwiper();
     },
