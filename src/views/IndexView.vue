@@ -1,5 +1,6 @@
 <template>
     <div class="w-screen h-screen overflow-hidden pt-[6vw]">
+      <h1 @click="increase">Index view{{ count }}</h1>
         <div class=" text-center relative mb-[6.5vw]">
             <Icon icon="uiw:left" class="absolute bottom-0 left-2 text-[6.239vw]"/>
             歌单广场
@@ -31,6 +32,7 @@
 import {fetchPlaylisthot,fetchPlaylists} from '@/request/index.js'
 import axios from 'axios';
 import BScroll from 'better-scroll';
+import store from '@/store'
 export default {
   data() {
     return {
@@ -39,10 +41,16 @@ export default {
       playlists: [],
     };
   },
+  computed:{
+        count(){
+            return store.state.count;
+        }
+    },
   mounted() {
     this.initScroll();
   },
   methods: {
+    increase: store.mutations.increase,
     initScroll() {
       const scrollWrapper = this.$refs.scrollWrapper;
       const scrollContent = this.$refs.scrollContent;

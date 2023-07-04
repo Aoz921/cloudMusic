@@ -1,10 +1,10 @@
 <template>
   <div :class="{ dark: switchCheckStatus }">
-    <div class=" bg-[#f7f9fc]  dark:bg-[#1b1b23] dark:text-[#fff]">
+    <div class=" bg-[#f7f9fc]  dark:bg-[#1b1b23] dark:text-[#fff] h-[100vh]" :class="switchCheckStatus?'overflow-hidden':'overflow-auto'">
 
       <header class="pl-[3.5vw] pr-[3.5vw]  relative mx-auto pt-4"
         :class="switchCheckStatus ? 'custom-gradient1' : 'custom-gradient'">
-        <div class="flex justify-around items-center">
+        <div class="flex justify-between items-center">
           <div @click="visi = !visi">
             <Icon icon="pepicons-pop:menu" class="text-[4vw]" />
           </div>
@@ -245,7 +245,7 @@
 
       <Drawer :visible.sync="visi" direction="ltr" class=" dark:bg-[#151515] dark:text-[#fff]" :hotTopic="hotTopic">
         <template #header >
-          <div class="flex justify-between items-center w-[90%] mx-auto mt-[4vw] relative z-[999]  ">
+          <div class="flex justify-between items-center  mx-auto pt-[4vw] pl-[3vw] pr-[3vw] pb-[4vw] relative z-[999]  bg-[#fff]">
             <div class="flex items-center">
               <img src="http://p1.music.126.net/68UCWFRROM30HihOi8LhGQ==/109951167758162478.jpg" alt=""
                 class="rounded-full w-[7vw] h-[7vw] mr-[3vw]">
@@ -799,7 +799,7 @@ img {
 }
 
 .inp-gradient {
-  background: linear-gradient(to right, #e6e4f9, #eae5fa, #f4e7f3, #f7f9fc);
+  background: linear-gradient(to right, #e6e4f9, #eae5fa, #f4e7f3);
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-blend-mode: screen;

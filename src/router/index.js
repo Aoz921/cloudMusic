@@ -9,7 +9,7 @@ const router = new VueRouter({
     // 路径重定向
     {
       path: '/',
-      redirect: '/Foo',
+      redirect: '/home',
     },
     {
       path: '/home',
