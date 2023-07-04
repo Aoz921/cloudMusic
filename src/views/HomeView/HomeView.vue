@@ -1,6 +1,6 @@
 <template>
   <div :class="{ dark: switchCheckStatus }">
-    <div class=" bg-[#f7f9fc]  dark:bg-[#1b1b23] dark:text-[#fff] h-[100vh]" :class="switchCheckStatus?'overflow-hidden':'overflow-auto'">
+    <div class=" bg-[#f7f9fc]  dark:bg-[#1b1b23] dark:text-[#fff] h-[100vh]" :class="visi?'overflow-hidden':'overflow-auto'">
 
       <header class="pl-[3.5vw] pr-[3.5vw]  relative mx-auto pt-4"
         :class="switchCheckStatus ? 'custom-gradient1' : 'custom-gradient'">
@@ -35,7 +35,7 @@
 
       <!-- 推荐歌单 -->
 
-      <section>
+      <section class=" border-b-[0.5vw] border-[#e3e5ea] pb-[3.5vw] dark:border-[#2d2d34]">
         <div>
           <div class="w-[95%] mx-auto mt-6 mb-3 h-[5vw] leading-[5vw] flex justify-between items-center">
             <div class="flex items-center">
@@ -88,7 +88,7 @@
 
 
       <!-- 新歌新碟 -->
-      <section class=" mt-5">
+      <section class="mt-[4vw] border-b-[0.5vw] border-[#e3e5ea] pb-[5vw] dark:border-[#2d2d34]">
         <div class="w-[95%] mx-auto mt-[3vw] h-[5vw] leading-[5vw] flex justify-between items-center">
           <div class="flex items-center">
             <span class="text-[4vw] font-bold">新歌新碟\数字专辑</span>
@@ -123,7 +123,7 @@
 
 
       <!-- 排行榜 -->
-      <section class=" mt-8">
+      <section class=" mt-[4vw] border-b-[0.5vw] border-[#e3e5ea] pb-[5vw] dark:border-[#2d2d34]">
         <div class="w-[95%] mx-auto mt-[3vw] h-[5vw] leading-[5vw] flex justify-between items-center">
           <div class="flex items-center">
             <span class="text-[4vw] font-bold">排行榜</span>
@@ -133,7 +133,7 @@
             <Icon icon="ant-design:more-outlined" />
           </div>
         </div>
-        <ul class="flex mt-3 overflow-auto menu">
+        <ul class="flex mt-[2.5vw] overflow-auto menu">
           <theCharts :topList="topList"></theCharts>
         </ul>
         <van-popup v-model="show_2" round closeable position="bottom" :style="{ height: '20%' }"
@@ -159,8 +159,8 @@
 
 
       <!-- 热门话题 -->
-      <section>
-        <div class="w-[95%] mx-auto mt-6 mb-3 h-[5vw] leading-[5vw] flex justify-between items-center">
+      <section class=" border-b-[0.5vw] border-[#e3e5ea] pb-[5vw] dark:border-[#2d2d34]">
+        <div class="w-[95%] mx-auto mt-[4vw] mb-3 h-[5vw] leading-[5vw] flex justify-between items-center">
           <div class="flex items-center">
             <span class="text-[4vw] font-bold">热门话题</span>
           </div>
@@ -201,7 +201,7 @@
       </section>
 
       <!-- 音乐日历 -->
-      <section class="mt-6">
+      <section class="mt-[4vw]">
         <div class="w-[95%] mx-auto mt-[3vw] h-[5vw] leading-[5vw] flex justify-between items-center mb-3">
           <div class="flex items-center">
             <span class="text-[4vw] font-bold">音乐日历</span>
@@ -245,7 +245,7 @@
 
       <Drawer :visible.sync="visi" direction="ltr" class=" dark:bg-[#151515] dark:text-[#fff]" :hotTopic="hotTopic">
         <template #header >
-          <div class="flex justify-between items-center  mx-auto pt-[4vw] pl-[3vw] pr-[3vw] pb-[4vw] relative z-[999]  bg-[#fff]">
+          <div class="flex justify-between items-center  mx-auto pt-[4vw] pl-[3vw] pr-[3vw] pb-[4vw] relative z-[999]  bg-[#fff] dark:bg-[#202020] dark:text-[#fff]">
             <div class="flex items-center">
               <img src="http://p1.music.126.net/68UCWFRROM30HihOi8LhGQ==/109951167758162478.jpg" alt=""
                 class="rounded-full w-[7vw] h-[7vw] mr-[3vw]">
