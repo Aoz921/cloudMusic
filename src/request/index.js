@@ -24,3 +24,6 @@ export async function fetchSeachList() {
      const playlist = await Promise.all(res.data.list.map(({id}) => http.get('./playlist/detail',{params:{id}})));
      return playlist.map(item => item.data.playlist);
 } 
+// 歌曲详情
+export const songdetail = (params) => http.get(`/playlist/detail?id=${params}`)
+export const songInfo = (params) => http.get(`/playlist/track/all?id=${params}`);

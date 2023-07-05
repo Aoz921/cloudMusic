@@ -1,5 +1,6 @@
 <template>
-    <div class="bg-[#f7f8fb] w-screen h-screen pt-[4.23vw] overflow-auto">
+    <div :class="{drak:switchCheckStatus}">
+        <div class="bg-[#f7f8fb] w-screen h-screen pt-[4.23vw] overflow-auto dark:bg-[#1b1b23] dark:text-[#fff]">
         <header class="w-[90%] mx-auto">
             <div class="flex justify-between items-center">
                 <Icon icon="formkit:left" class="text-[3.86vw]" />
@@ -47,15 +48,16 @@
            </div>
         </section>
         <section class="mt-[5.31vw] pl-[4vw]">
-            <ul class="flex overflow-auto">
-                <li v-for="item in List"  class="w-[60vw] flex-none bg-white mr-[2.5vw] rounded-[3vw]" >
-                    <div class="w-[90%] h-[12.32vw] mx-auto border-b-[0.5vw] border-[#e5e5e5] flex items-center">
-                        <span class=" text-[3.86vw]">{{ item.name }}</span>
-                        <div class="flex items-center bg-[#f2f3f4] rounded-[3vw] p-[1vw] pl-[1.8vw] pr-[1.8vw] border-[0.2vw] border-[#ebedef] ml-[3.26vw]">
-                            <Icon icon="bi:play-fill" class="text-[3.05vw]"/>
-                            <span class="text-[2.78vw]">播放</span>
+            <van-swipe  :loop="false" :width="250" class="flex">
+                <van-swipe-item v-for="item in List"  :key="item.id">
+                    <div  class="w-[60vw] mr-[2vw] flex-none bg-white rounded-[3vw]">
+                        <div class="w-[90%] h-[12.32vw] mx-auto border-b-[0.5vw] border-[#e5e5e5] flex items-center">
+                            <span class=" text-[3.86vw]">{{ item.name }}</span>
+                            <div class="flex items-center bg-[#f2f3f4] rounded-[3vw] p-[1vw] pl-[1.8vw] pr-[1.8vw] border-[0.2vw] border-[#ebedef] ml-[3.26vw]">
+                                <Icon icon="bi:play-fill" class="text-[3.05vw]"/>
+                                <span class="text-[2.78vw]">播放</span>
+                            </div>
                         </div>
-                    </div>
                     <ul>
                         <li v-for="(key,index) in item.tracks.slice(0, 20)" :key="index">
                             <div class="flex items-center mt-[5.43vw]">
@@ -64,9 +66,12 @@
                             </div>
                         </li>
                     </ul>
-                </li>
-            </ul>
+                    </div>
+                    
+                </van-swipe-item>
+            </van-swipe>
         </section>
+    </div>
     </div>
 </template>
 <script>
@@ -87,7 +92,8 @@ export default {
             defaultSearch: {},
             searchSuggestList: [],
             List:[],
-            guessLike:[]
+            guessLike:[],
+            switchCheckStatus: false,
         };
     },
     methods: {
@@ -126,4 +132,9 @@ export default {
 };
 
 </script>
-<style></style>
+<style>
+ .van-swipe__indicators > .van-swipe__indicator {
+    width: 0;
+    height: 0;
+  }
+</style>

@@ -2,7 +2,7 @@
   <div class="flex">
     <li v-for="item in hotTopic" :key="item.id" class="w-[31vw] text-[1vw] mr-[2vw] rounded-[3vw] ">
           <div class="relative">
-            <img :src="item.uiElement.image.imageUrl" class="w-[31vw] h-[31vw] rounded-[3vw]">
+            <img :src="item.uiElement.image.imageUrl" class="w-[31vw] h-[31vw] rounded-[3vw]" @click="songdetail(item.resources[0].resourceId)">
             <Icon icon="ion:play" width="10"
               class="absolute bottom-[2vw] right-[2.5vw] text-[#fff] w-[5vw] h-[5vw]" />
             <div class="absolute top-[2vw] right-[2.5vw] font-[800] text-[#fff] flex items-center">
@@ -40,6 +40,10 @@
               return playVolume;
             }
           },
+          songdetail(id){
+            this.$router.push({path:"/songdetail",query:{id}})
+            // this.$router.push('/songdetail')
+          }
         }
     }
 </script>
