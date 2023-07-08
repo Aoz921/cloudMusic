@@ -246,10 +246,13 @@
       <Drawer :visible.sync="visi" direction="ltr" class=" dark:bg-[#151515] dark:text-[#fff]" :hotTopic="hotTopic">
         <template #header >
           <div class="flex justify-between items-center  mx-auto pt-[4vw] pl-[3vw] pr-[3vw] pb-[4vw] relative z-[999]  bg-[#fff] dark:bg-[#202020] dark:text-[#fff]">
-            <div class="flex items-center">
-              <img src="http://p1.music.126.net/68UCWFRROM30HihOi8LhGQ==/109951167758162478.jpg" alt=""
-                class="rounded-full w-[7vw] h-[7vw] mr-[3vw]">
-              <p>波风面麻</p>
+            <div class="flex items-center" @click="LoginView">
+              <img :src="local.profile.avatarUrl" alt=""
+                class="rounded-full w-[7vw] h-[7vw] mr-[3vw]" v-if="cookie">
+                <img src="http://p2.music.126.net/_rlkRwU3v7Xf3oAhbHplFA==/109951168702595990.jpg" class="rounded-full w-[7vw] h-[7vw] mr-[3vw]" alt="" v-else>
+              <p v-if="cookie">{{ local.profile.nickname }}</p>
+            
+              <p v-else>点击登录</p>
               <Icon icon="ep:arrow-left-bold" width="15" :horizontalFlip="true" :verticalFlip="true"
                 class="dark:text-[#fff]" />
             </div>
@@ -562,7 +565,7 @@
               </ul>
             </div>
             <!-- 退出登录 -->
-            <div
+            <div  @click="fn"
               class="w-[76vw] mx-auto rounded-xl py-[4vw] box-border bg-[white] mt-[3.9vw] text-center text-[red] text-[4vw] dark:bg-[#202020]">
               退出登录/关闭</div>
           </div>
@@ -580,6 +583,8 @@ import newSong from './components/newSong.vue'
 import theCharts from './components/theCharts.vue'
 import musicCalendar from './components/musicCalendar.vue';
 import BScroll from '@better-scroll/core'
+import store from 'storejs'
+import Dialog from '@/components/Dialog';
 
 export default {
   name: 'HomeView',
@@ -610,7 +615,9 @@ export default {
       show_3: false,
       show_4: false,
       visi: false,
-      switchCheckStatus: false,
+      switchCheckStatus: null,
+      local:{},
+      cookie:"",
 
       colors: ['#8194a8', '#909090', '#ac9485', '#7c8fc3', '#8c7da3', '#63aed6'] // 自定义颜色列表
     };
@@ -626,6 +633,22 @@ export default {
         this.bs.refresh();
     },
   methods: {
+    LoginView() {
+            this.$router.push('/Login');
+        },
+    fn(){
+          Dialog({title:'网易云音乐',message:'确定退出当前账号吗?'})
+          .then(() => {
+              console.log('点击了确定');
+              store.remove('__m__cookie');
+              store.remove('__m__User');//删除用户信息
+              store.remove('__m__UserData');//删除账号信息
+              this.$router.push('/Login');
+          })
+          .catch(() => {
+              console.log('点击了取消');
+          });
+      },
     init(name) {
         this.bs = new BScroll(name,{
             scrollY: true,
@@ -690,6 +713,17 @@ export default {
     },
   },
   created() {
+    // this.local = localStorage.getItem('__m__User')
+    // // console.log( typeof this.local)
+    // let str = JSON.parse(this.local)
+    // console.log(str)
+    
+    // console.log(str.profile.nickname)
+
+    this.local = JSON.parse(localStorage.getItem('__m__User'))
+    console.log(this.local)
+    this.cookie = localStorage.getItem("__m__cookie")
+
     this.fetchCalendar();
     axios.get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page')
       .then((res) => {
@@ -717,7 +751,8 @@ export default {
         this.personalized = res.data.result;
       })
       .catch((err) => console.log(err));
-      
+      this.switchCheckStatus = store.get('switch')
+
   },
   
 

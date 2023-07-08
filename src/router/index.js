@@ -28,7 +28,20 @@ const router = new VueRouter({
       path:'/Foo',
       // 懒加载
       component:() => import('@/views/Foo.vue')
-    }
+    },
+    {
+      path: '/Login',
+        // 懒加载组件文件
+        component: () => import('@/views/Login.vue'),
+      },
+      {
+        path: '/user',
+          // 懒加载组件文件
+          component: () => import('@/views/user.jsx'),
+        },
+      
+
+    
   ]
 });
 export default router;
