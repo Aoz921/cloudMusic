@@ -9,6 +9,7 @@
     </div>
 </template>
 <script>
+import store from 'storejs'
     export default{
         // model 主要是去配置v-model指令所需要使用的 属性名 和事件名
         model:{
@@ -26,7 +27,9 @@
                 // this.$emit('updata:value', !this.value)
                 // 触发自身的input1方法
                 // console.log(this.value1);
+                store.set('switch',!this.value1)
                 this.$emit('input1', !this.value1)
+                
             }
         }
     };
