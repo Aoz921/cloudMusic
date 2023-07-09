@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
-import { Swipe, SwipeItem } from 'vant';
+import { Swipe, SwipeItem,Button,NoticeBar,Popup,Area, Cell, CellGroup } from 'vant';
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Drawer from '@/components/Drawer.vue';
@@ -10,16 +10,13 @@ import 'vant/lib/index.css';
 import App from '@/App.vue'
 import router from '@/router/index'
 import Switch  from '@/components/Switch.vue';
-// import Dialog from './components/Dialog'
-// Vue.use(Dialog)
 Vue.component('v-Switch', Switch);
 Vue.use(Switch);
 Vue.use(Vant);
 dayjs.extend(relativeTime);
 Vue.prototype.dayjs = dayjs;
 Vue.component('Icon', Icon);
-Vue.use(Swipe);
-Vue.use(SwipeItem);
+Vue.use(Swipe).use(SwipeItem).use(Button).use(Popup).use(Area).use(Cell).use(CellGroup);
 Vue.component('Drawer',Drawer)
 // Vue.extend给Vue构造函数配置项设置默认值
 const ChildVue = Vue.extend({

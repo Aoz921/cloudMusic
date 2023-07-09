@@ -18,7 +18,7 @@
             </div>
         </header>
         <section>
-          <div v-if="display">
+          <div  v-show="tab" class="transition-all fade-in">
             <div  class="w-[92%] mx-auto pt-[5.3vw] flex justify-between mt-[13vw]">
                 <div class="flex">
                     <div class="relative">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="ml-[3vw]">
                         <div>
-                            <p class="text-[3.74vw]">{{ songdetail.name }}</p>
+                            <p class="text-[3.74vw] w-[58vw]">{{ songdetail.name }}</p>
                             <div class="mt-[1.8vw] flex items-center">
                                 <img :src="songdetail.creator.avatarUrl" alt="" class="w-[6vw] rounded-[50%]">
                                 <span class="text-[2.66vw] mx-[1vw]">{{ songdetail.creator.nickname }}</span>
@@ -51,9 +51,6 @@
 
                     </div>
                 </div>
-                <div class=" bg-white bg-opacity-20 w-[4.83vw] h-[4.83vw]  rounded-[50%] flex items-center justify-center flex-none" @click="display = !display">
-                  <Icon icon="uiw:left" :rotate="3" class="text-[#d8cac2] text-[2.3vw]"/>
-                </div>
             </div>
             <div class="flex items-center w-[92%] mx-auto mt-[3.5vw]">
                 <p class=" overflow-auto whitespace-nowrap w-[95%] songP text-[2.78vw] mr-[1vw] text-[#c3c3c3] text-opacity-70">{{ songdetail.description }}</p>
@@ -61,12 +58,10 @@
             </div>
           </div>
             
-            <div v-if="!display" class=" mt-[13vw] pt-[5.3vw]">
+            <div v-show="!tab" class=" mt-[13vw] pt-[5.3vw] transition-all fade-in">
                 <p class="flex  pl-[4vw] pr-[4vw]" style="justify-content: space-between;">
                     <span class="text-[2vw] text-[#c3c3c3] text-opacity-70">喜欢这个歌单的用户也听了</span>
-                    <span class="w-[4.83vw] h-[4.83vw] rounded-[50%] bg-white bg-opacity-20 flex"  @click="display = !display" style="align-items: center; justify-content:center" >
-                        <Icon icon="ep:arrow-up"  class="text-[#d8cac2] text-[2.3vw]"  />
-                    </span>
+                   
                 </p>
                 <div class="overflow-auto songP pl-[2vw] pr-[2vw] mt-[3vw]">
                     <div class=" flex " :style="`width:${music?.length * 25 + 25}vw`"  style="justify-content: space-around;">
@@ -76,6 +71,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class=" bg-white bg-opacity-20 w-[4.83vw] h-[4.83vw]  rounded-[50%] flex items-center justify-center flex-none absolute top-[19vw] right-[4vw]" @click="fn">
+                  <Icon icon="uiw:left" :rotate="3" class="text-[#d8cac2] text-[2.3vw]"/>
             </div>
             
             <div class="flex w-[92%] mx-auto justify-between mt-[5vw]">
@@ -139,9 +138,9 @@ export default {
     return {
       songdetail: {},
       songInfo:[],
-      switchCheckStatus: null,
+      switchCheckStatus: false,
       music:[],
-      display:true,
+      tab:true,
     };
   },
   async created() {
@@ -159,6 +158,9 @@ export default {
         })
   },
   methods:{
+    fn() {
+      this.tab = !this.tab;
+    },
     HomeView() {
       this.$router.push('/home');
     },
@@ -178,6 +180,19 @@ export default {
 .songP::-webkit-scrollbar {
   height: 0px;
   width: 20px;
+}
+
+.fade-in {
+  animation: fade-in 1.2s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 </style>

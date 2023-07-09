@@ -246,13 +246,13 @@
       <Drawer :visible.sync="visi" direction="ltr" class=" dark:bg-[#151515] dark:text-[#fff]" :hotTopic="hotTopic">
         <template #header >
           <div class="flex justify-between items-center  mx-auto pt-[4vw] pl-[3vw] pr-[3vw] pb-[4vw] relative z-[999]  bg-[#fff] dark:bg-[#202020] dark:text-[#fff]">
-            <div class="flex items-center" @click="LoginView">
+            <div class="flex items-center">
               <img :src="local.profile.avatarUrl" alt=""
                 class="rounded-full w-[7vw] h-[7vw] mr-[3vw]" v-if="cookie">
                 <img src="http://p2.music.126.net/_rlkRwU3v7Xf3oAhbHplFA==/109951168702595990.jpg" class="rounded-full w-[7vw] h-[7vw] mr-[3vw]" alt="" v-else>
-              <p v-if="cookie">{{ local.profile.nickname }}</p>
+              <p v-if="cookie" @click="$router.push('/user')">{{ local.profile.nickname }}</p>
             
-              <p v-else>点击登录</p>
+              <p v-else  @click="LoginView">点击登录</p>
               <Icon icon="ep:arrow-left-bold" width="15" :horizontalFlip="true" :verticalFlip="true"
                 class="dark:text-[#fff]" />
             </div>
@@ -615,7 +615,7 @@ export default {
       show_3: false,
       show_4: false,
       visi: false,
-      switchCheckStatus: null,
+      switchCheckStatus: false,
       local:{},
       cookie:"",
 
@@ -787,10 +787,6 @@ export default {
 
 .red-image {
   filter: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg'><filter id='colorize'><feColorMatrix type='matrix' values='1 0 0 0 0.698 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0'/></filter></svg>#colorize");
-}
-
-img {
-  max-width: none;
 }
 
 

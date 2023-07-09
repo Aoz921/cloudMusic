@@ -10,7 +10,7 @@ const router = new VueRouter({
     // 路径重定向
     {
       path: '/',
-      redirect: '/home',
+      redirect: '/Login',
     },
     {
       path: '/home',
@@ -39,7 +39,11 @@ const router = new VueRouter({
           // 懒加载组件文件
           component: () => import('@/views/user.jsx'),
         },
-      
+        {
+          path: '/information',
+            // 懒加载组件文件
+            component: () => import('@/views/information.jsx'),
+          },
 
     
   ]
