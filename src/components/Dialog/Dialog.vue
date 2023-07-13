@@ -40,7 +40,6 @@
         cancel(){
             this.hide()
             this.reject()
-            this.$router.push('/Login');
         },
         confirm(){
             this.hide()

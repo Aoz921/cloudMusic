@@ -1,14 +1,24 @@
 <template>
   <div :class="{dark:switchCheckStatus}">
     <div class="bg-[#3e4769] text-[#fff] ">
-        <header class="fixed top-0 w-[100%] bg-[#3e4769] z-50">
-            <div class="flex text-center justify-between w-[92%] mx-auto pt-[6.5vw] h-[13vw] ">
+        <header class="fixed top-0 z-[30] w-[100%] bg-[#3e4769] pb-[2vw]">
+            <div class="flex text-center justify-between items-center w-[92%] mx-auto pt-[6.5vw] h-[13vw] ">
                 <span class="w-[12vw]" @click="HomeView">
                     <Icon icon="formkit:left" class="text-[5.43vw]" />
                 </span>
-                <span class="text-[4.11vw] w-[12vw] ">
+                <!-- <span class="text-[4.11vw] w-[12vw] ">
                     歌单
-                </span>
+                </span> -->
+                <div v-if="check">
+                    <p class=" text-[4.44vw] ml-[4.85vw]">歌单</p>
+                </div>
+                <div v-else class="flex justify-between items-center mr-[4vw]">
+                    <van-notice-bar delay="0.5" scrollable background="#3e4769" color="#fff" :text="songdetail.name" class="text-[4.44vw] w-[40vw] h-[5vw] leading-[5vw]"/>
+                    <div class="w-[16.6vw] h-[6.67vw] rounded-[5vw] flex justify-center items-center ml-[2.48vw] text-[3.16vw]"  style="background: rgba(255,255,255, 0.2)">
+                        <Icon class="w-[3.08vw] h-[3.19vw] mr-[1.35vw]" icon="material-symbols:add-box" />
+                        收藏
+                    </div>
+                </div>
                 <span class="w-[12vw]">
                     <span class="flex">
                         <Icon icon="carbon:search" color="Seashell3" class="text-[5.31vw] mr-[2vw]" />
@@ -17,11 +27,11 @@
                 </span>
             </div>
         </header>
-        <section>
+        <section ref="head">
           <div  v-show="tab" class="transition-all fade-in">
             <div  class="w-[92%] mx-auto pt-[5.3vw] flex justify-between mt-[13vw]">
                 <div class="flex">
-                    <div class="relative">
+                    <div class="relative z-0">
                         <img :src="songdetail.coverImgUrl" alt="" class="w-[25.36vw] rounded-[2vw]">
                         <div class="flex items-center absolute top-[2.3vw] right-[1.45vw]">
                           <Icon icon="bi:play-fill" class="text-[3.45vw]"/>
@@ -80,23 +90,23 @@
             <div class="flex w-[92%] mx-auto justify-between mt-[5vw]">
                 <div class="w-[28.86vw] h-[9.66vw] rounded-[4.5vw] text-[#fff] bg-white bg-opacity-20 flex justify-center items-center">
                     <Icon icon="majesticons:share" class="text-[5vw]"/>
-                    <span>{{ songdetail.shareCount }}</span>
+                    <span>{{ dataTruncation(songdetail.shareCount) }}</span>
                 </div>
                 <div class="w-[28.86vw] h-[9.66vw] rounded-[4.5vw] text-[#fff] bg-white bg-opacity-20 flex justify-center items-center">
                     <Icon icon="heroicons-solid:chat"  class="text-[5vw]"/>
-                    <span>{{ songdetail.trackCount }}</span>
+                    <span>{{ dataTruncation(songdetail.trackCount) }}</span>
                 </div>
                 <div class="w-[28.86vw] h-[9.66vw] rounded-[4.5vw] text-[#fff] bg-[#eb484c] flex justify-center items-center">
                     <Icon icon="fluent:collections-24-filled" class="text-[5vw]" />
-                    <span>{{ songdetail.subscribedCount }}</span>
+                    <span>{{ dataTruncation(songdetail.subscribedCount) }}</span>
                 </div>
             </div>
         </section>
         <section class="mt-[4vw] text-[#2a3146] dark:text-[#fff]">
           <div class="bg-[#fff] rounded-t-[4vw] dark:bg-[#4e5778] ">
-                <div class=" flex justify-between items-center px-[3.38vw]  py-[3vw] border-b-[0.5vw] border-[#e5e3e3] sticky top-[13vw] rounded-t-[4vw] bg-[#fff] dark:bg-[#4e5778] dark:border-[#555e7d]">
+                <div class=" flex justify-between items-center px-[3.38vw]  py-[3vw] border-b-[0.5vw] border-[#e5e3e3] sticky top-[14.5vw] rounded-t-[4vw] bg-[#fff] dark:bg-[#4e5778] dark:border-[#555e7d]">
                   <div class="flex items-center">
-                    <div class="bg-[#eb4d44] w-[5.9vw] h-[5.9vw] rounded-[50%] flex items-center justify-center mr-[2.54vw]">
+                    <div @click="playAll" class="bg-[#eb4d44] w-[5.9vw] h-[5.9vw] rounded-[50%] flex items-center justify-center mr-[2.54vw]">
                       <Icon icon="ion:play" class="text-[#fff] text-[2.54vw]"/>
                     </div>
                     <span class="font-bold">播放全部</span>
@@ -110,7 +120,7 @@
            
             <div>
               <ul class="px-[3.38vw]">
-                <li v-for="(item,index) in songInfo" :key="index" class="flex items-center justify-between mt-[5.8vw]">
+                <li v-for="(item,index) in songInfo" :key="index" @click="playSingle(item.id)" class="flex items-center justify-between mt-[5.8vw]">
                   <div class="flex items-center">
                     <span class="w-[5.2vw] text-[#999] text-center mr-[4vw] dark:text-[#8c91a6]">{{ index+1 }}</span>
                     <div>
@@ -141,6 +151,7 @@ export default {
       switchCheckStatus: false,
       music:[],
       tab:true,
+      check:true
     };
   },
   async created() {
@@ -149,6 +160,7 @@ export default {
     const res2 = await songInfo(this.$route.query.id);
     this.songdetail = res1.data.playlist;
     this.songInfo = res2.data.songs;
+    store.set('songs',this.songInfo)
     console.log(this.songdetail);
     console.log(this.songInfo);
     musicSlider(this.$route.query.id).then((res) => {
@@ -156,8 +168,15 @@ export default {
           this.music = res.data.playlists
           console.log(this.music);
         })
+        
   },
   methods:{
+    playAll(){
+      this.$player.replacePlaylist(this.songInfo.map((song) => song.id),'','')
+    },
+    playSingle(id) {
+      this.$player.replacePlaylist(this.songInfo.map((song) => song.id),'','', id)
+    },
     fn() {
       this.tab = !this.tab;
     },
@@ -173,6 +192,18 @@ export default {
         return playVolume;
       }
     },
+    beforeDestroy() {
+        this.bs.destroy();
+        window.removeEventListener('scroll',this.handleScroll);
+    },
+    handleScroll(){
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+          // 如果滚动高度超过阈值，则固定在顶部，否则取消固定
+          this.check = scrollTop > this.$refs.head.offsetHeight/2 ? false : true;
+      },
+  },
+  mounted(){
+    window.addEventListener('scroll',this.handleScroll);
   }
 };
 </script>

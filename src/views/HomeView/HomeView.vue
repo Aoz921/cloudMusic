@@ -585,6 +585,7 @@ import musicCalendar from './components/musicCalendar.vue';
 import BScroll from '@better-scroll/core'
 import store from 'storejs'
 import Dialog from '@/components/Dialog';
+import {HomeData} from '@/request'
 
 export default {
   name: 'HomeView',
@@ -712,7 +713,7 @@ export default {
       }
     },
   },
-  created() {
+  async created() {
     // this.local = localStorage.getItem('__m__User')
     // // console.log( typeof this.local)
     // let str = JSON.parse(this.local)
@@ -723,19 +724,33 @@ export default {
     this.local = JSON.parse(localStorage.getItem('__m__User'))
     console.log(this.local)
     this.cookie = localStorage.getItem("__m__cookie")
-
     this.fetchCalendar();
-    axios.get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page')
-      .then((res) => {
-        this.menu = res.data.data.blocks[0].extInfo.banners;
-        this.newSong = res.data.data.blocks[5].creatives;
-        this.topList = res.data.data.blocks[3].creatives;
-        this.hotTopic = res.data.data.blocks[1].creatives.slice(1);
-        this.resources = res.data.data.blocks[1].creatives[0].resources;
-        this.resourceData = this.resources[0].uiElement.mainTitle.title;
-        console.log(this.topList);
-      })
-      .catch((err) => console.log(err));
+
+
+    // axios.get('https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/block/page')
+    //   .then((res) => {
+        
+
+    const res = await HomeData()
+    if(this.cookie){
+      this.newSong = res.data.data.blocks[2].creatives;
+    }else{
+      this.newSong = res.data.data.blocks[5].creatives;
+    }
+    this.menu = res.data.data.blocks[0].extInfo.banners;
+    // this.newSong = res.data.data.blocks[5].creatives;
+    this.topList = res.data.data.blocks[3].creatives;
+    this.hotTopic = res.data.data.blocks[1].creatives.slice(1);
+    this.resources = res.data.data.blocks[1].creatives[0].resources;
+    this.resourceData = this.resources[0].uiElement.mainTitle.title;
+    console.log(this.topList);
+      // })
+      // .catch((err) => console.log(err));
+
+
+
+
+
     axios
       .get(
         'https://netease-cloud-music-c2c1ys55f-cc-0820.vercel.app/homepage/dragon/ball'

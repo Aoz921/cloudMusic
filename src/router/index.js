@@ -6,7 +6,7 @@ import SearchView from '@/views/SearchView.vue'
 import SongDetail from "@/views/SongDetail/SongDetail.vue"
 Vue.use(VueRouter);
 const router = new VueRouter({
-  routes:[
+  routes: [
     // 路径重定向
     {
       path: '/',
@@ -25,27 +25,33 @@ const router = new VueRouter({
       component: SongDetail,
     },
     {
-      path:'/Foo',
+      path: '/Foo',
       // 懒加载
-      component:() => import('@/views/Foo.vue')
+      component: () => import('@/views/Foo.vue')
     },
     {
       path: '/Login',
-        // 懒加载组件文件
-        component: () => import('@/views/Login.vue'),
-      },
-      {
-        path: '/user',
-          // 懒加载组件文件
-          component: () => import('@/views/user.jsx'),
-        },
-        {
-          path: '/information',
-            // 懒加载组件文件
-            component: () => import('@/views/information.jsx'),
-          },
+      // 懒加载组件文件
+      component: () => import('@/views/Login.vue'),
+    },
+    {
+      path: '/user',
+      // 懒加载组件文件
+      component: () => import('@/views/user/user.jsx'),
+    },
+    {
+      path: '/information',
+      // 懒加载组件文件
+      component: () => import('@/views/user/information.jsx'),
+    },
+    {
+      path: '/Playsong',
+      // 懒加载组件文件
+      component: () => import('@/views/Playsong.vue'),
+    },
 
-    
+
+
   ]
 });
 export default router;

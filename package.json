@@ -18,6 +18,7 @@
     "better-scroll": "^2.5.1",
     "dayjs": "^1.11.8",
     "eslint-import-resolver-webpack": "^0.13.2",
+    "howler": "^2.2.3",
     "jquery": "^3.7.0",
     "lodash": "^4.17.21",
     "storejs": "^2.0.5",
@@ -25,6 +26,7 @@
     "swiper": "^9.4.1",
     "vant": "^2.12.54",
     "vue-router": "^3.3.4",
+    "vue-slider-component": "^3.2.24",
     "vue-sticky-element": "^1.6.0"
   },
   "config": {
@@ -33,7 +35,6 @@
     }
   },
   "devDependencies": {
-    
     "@babel/core": "^7.22.8",
     "@babel/preset-env": "^7.22.7",
     "@commitlint/cli": "^17.6.6",

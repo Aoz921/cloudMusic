@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
-import { Swipe, SwipeItem,Button,NoticeBar,Popup,Area, Cell, CellGroup } from 'vant';
+import { Swipe, SwipeItem,Button,NoticeBar,Popup,Area, Cell, CellGroup, } from 'vant';
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Drawer from '@/components/Drawer.vue';
@@ -10,14 +10,22 @@ import 'vant/lib/index.css';
 import App from '@/App.vue'
 import router from '@/router/index'
 import Switch  from '@/components/Switch.vue';
+import { Circle } from 'vant';
+import player from './components/player/player.js';
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
+
+Vue.component('VueSlider', VueSlider)
+Vue.use(player)
 Vue.component('v-Switch', Switch);
 Vue.use(Switch);
 Vue.use(Vant);
 dayjs.extend(relativeTime);
 Vue.prototype.dayjs = dayjs;
 Vue.component('Icon', Icon);
-Vue.use(Swipe).use(SwipeItem).use(Button).use(Popup).use(Area).use(Cell).use(CellGroup);
+Vue.use(Swipe).use(SwipeItem).use(Button).use(Popup).use(Area).use(Cell).use(CellGroup).use(Circle).use(NoticeBar);
 Vue.component('Drawer',Drawer)
+
 // Vue.extend给Vue构造函数配置项设置默认值
 const ChildVue = Vue.extend({
     template:'<h1>{{msg}}</h1>',

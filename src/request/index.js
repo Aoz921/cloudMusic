@@ -20,6 +20,9 @@ export const fetchPlaylists = (cat) =>
         '/top/playlist',
         { params: { cat } }
     )
+
+export const HomeData = () => http.get('/homepage/block/page')
+
 //搜索框
 export const fetchSearchDefault = () => http.get('/search/default');
 export const fetchSearchResult = (params) =>
@@ -34,6 +37,8 @@ export async function fetchSeachList() {
 } 
 // 歌曲详情
 export const songdetail = (params) => http.get(`/playlist/detail?id=${params}`)
+
+
 export const songInfo = (params) => http.get(`/playlist/track/all?id=${params}`);
 
 
@@ -53,3 +58,11 @@ export const fetchPlaylist = (uid) => http.get('/user/playlist',{params:{uid}})
 
 export const fetchUserComment = (uid) => http.get('/user/comment/history',{params:{uid}})
 
+export const getTrackDetail = (id) => http.get('/song/detail',{params:{ids:id}});
+
+export const getMP3 = (id) =>
+  http.get('/song/url/v1', { params: { id, level: 'standard' } })
+
+export const playlistTrackAll = (id) => http.get('/playlist/track/all',{params:{id}})
+
+export const updateinfo = (info) => http.get('/user/update',{params:{...info}})
