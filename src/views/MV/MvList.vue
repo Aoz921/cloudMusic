@@ -11,17 +11,15 @@
                 </div>
                
             </header>
-            <van-tabs @click="tab" background="transparent" line-width="3.5vw" title-active-color="" >
-                <nav>
-                    <van-tab v-for="item in title" :key="item.id" :title="item"></van-tab>
-                </nav>
-            <section class="mt-[5.8vw]">
+            <van-tabs @click="tab" background="transparent"  line-width="3.5vw" animated swipeable  @change="tab">
+                    <van-tab v-for="item in title" :key="item.id" :title="item">
+                        <section class="mt-[5.8vw]">
                 <div class="flex items-center">
                     <span class="text-[3.14vw]">最近更新:</span>
                     <span class="text-[3.14vw] w-[11vw] text-center">今天</span>
                     <Icon class="text-[4.95vw] text-[#e9e9e9] " icon="quill:warning-alt" :rotate="2" />
                 </div>
-                <div v-for="(item,index) in MVmenu" :key="item.id" class="mt-[4.35vw]">
+                <div v-for="(item,index) in MVmenu" :key="item.id" class="mt-[4.35vw]" @click="MV(item.id)">
                     <div class="relative">
                         <img class="rounded-[3vw]" :src="item.cover" alt="">
                         <div class="absolute top-[1.1vw] right-[1.7vw] text-[2.3vw] text-[#fbfbfb] flex justify-center items-center">
@@ -37,7 +35,8 @@
                         </div>
                     </div>
                 </div>
-            </section>
+            </section></van-tab>
+            
         </van-tabs>
         </div>
     
@@ -57,6 +56,12 @@ export default{
         }
     },
     methods:{
+        MV(id){
+            this.$router.push({
+                name:'video',
+                params:{id}
+            })
+        },
         tab(name,title){
             this.initial=title
             console.log(this.initial);

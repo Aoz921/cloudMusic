@@ -54,7 +54,12 @@ const router = new VueRouter({
       // 懒加载组件文件
       component: () => import('@/views/MV/MvList.vue'),
     },
-
+    {
+      path: '/video',
+      name:'video',
+      // 懒加载组件文件
+      component: () => import('@/views/MV/VideoPlayer.vue'),
+    },
 
   ]
 });
