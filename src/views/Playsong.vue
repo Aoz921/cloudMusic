@@ -1,5 +1,5 @@
 <template>
-<div class="relative">
+<div class="relative transition-container">
   <div class=" absolute z-[3] w-[100%] h-[100vh] flex  flex-col justify-between">
     <!-- 头部 -->
     <div class=" flex items-center justify-center pt-[4.7vw]">
@@ -14,15 +14,37 @@
         <Icon icon="ri:share-circle-fill" color="white" width="25" height="25" class="ml-[6.44vw]" />
     </div>
     <!-- 唱片 -->
-    <div class="rotate-container h-[100vw] pt-[25vw]" >
+    <div class="rotate-container h-[100vw] pt-[25vw]" v-if="!lyric1">
         <div class="absolute top-[5%] left-[49%]  z-[10] rotated w-[40vw] h-[50vw]" ref="pointer" :style="!$player._playing ? `transform:rotate(-36deg)`:`transform:rotate(-5deg)`">
           <img src="/static/bf_3.png" alt="" class="h-[40vw] absolute top-[-3.2vw] left-[-3.2vw]">
         </div>
         <div class="relative">
             <img src="/static/bf_1.png" class="m-auto w-[71.1vw]" alt="">
-            <img :src="$player._currentTrack?.al?.picUrl" alt="" class="w-[45.98vw] rounded-[50%] absolute top-1/2 left-1/2 rotate-image" :class="{ 'paused-animation': !this?.$player?._playing }">
+            <img :src="$player._currentTrack?.al?.picUrl" alt="" class="w-[45.98vw] rounded-[50%] absolute top-1/2 left-1/2 rotate-image" :class="{ 'paused-animation': !this?.$player?._playing }" @click="lyric1=!lyric1">
         </div>
     </div>
+    <div
+      class="w-[100vw] h-[130vw] flex items-center flex-wrap px-[6vw] justify-center overflow-hidden relative internalShadow"
+      v-if="lyric1"
+      @click="lyric1 = !lyric1"
+    >
+      <div
+        class="absolute top-0 transition-all duration-1000"
+        :style="{ top: -$player.lineHieght + 'vw' }"
+      >
+        <div
+          v-for="(line, index) in $player.lyricLines"
+          :key="index"
+          class="text-[hsla(0,0%,88.2%,.8)] line-clamp-2 w-[100%] h-[12vw] px-[4vw] flex justify-center text-center"
+          :style="{
+            color: index === $player.lineIndex ? '#fff' : 'hsla(0,0%,88.2%,.7)',
+          }"
+        >
+          {{ line.txt }}
+        </div>
+      </div>
+    </div>
+
     <div>
       <!-- 选项 -->
       <div class="flex items-center justify-around">
@@ -55,19 +77,26 @@
      
 </div>
  <!--bg-->
- <div class="element fixed z-[1] top-0 left-0 right-0 bottom-0" :style="`background-image: url(${$player._currentTrack?.al?.picUrl})`"></div>
-    <div class="fixed z-[2] bgColor top-0 left-0 right-0 bottom-0"></div>
+ <div class="element fixed z-[1] top-0 left-0 right-0 bottom-0 " :style="`background-image: url(${$player._currentTrack?.al?.picUrl})`"></div>
+  <div class="fixed z-[2] bgColor top-0 left-0 right-0 bottom-0 "></div>
    
-    
+  
 </div>
 </template>
 
 <script>
+import {lyricText} from '@/request/index';
+import Lyric from 'lyric-parser';
 export default{
     data(){
         return{
           color:false,
           currentRate: 0,
+          songsLyric:'',
+          lyric:{},
+          // visible:false,
+          currentId:"",
+          lyric1:false
         }
     },
     methods:{
@@ -91,8 +120,12 @@ export default{
         },
         PrevTrackCallback() {
           if (this.$player.list.indexOf(this.$player._currentTrack.id) == 0) {
+            this.currentId = this.$player.list[this.$player.list.length - 1]
             this.playSingle(this.$player.list[this.$player.list.length - 1]);
           } else {
+            this.currentId = this.$player.list[
+                this.$player.list.indexOf(this.$player._currentTrack.id) - 1
+              ]
             this.playSingle(
               this.$player.list[
                 this.$player.list.indexOf(this.$player._currentTrack.id) - 1
@@ -100,6 +133,25 @@ export default{
             );
         }
     },
+    },
+    created(){
+      this.currentId = this.$player._currentTrack.id
+      lyricText(this.currentId ).then((res) => {
+        console.log(res);
+        this.lyric = new Lyric(res.data.lrc.lyric)
+        console.log(this.lyric);
+      })
+      
+    },
+    watch:{
+      currentId(value){
+        this.currentId = value
+        lyricText(value).then((res) => {
+        // console.log(res);
+        this.lyric = new Lyric(res.data.lrc.lyric)
+        console.log(this.lyric);
+      })
+      }
     }
 }
 </script>
@@ -132,7 +184,8 @@ export default{
 } */
 
 .rotated {
-  transition: all .5s;
+  /* transition: all .5s; */
+  transition-duration: .5s;
   transform-origin: left top;
 }
 
@@ -144,4 +197,26 @@ export default{
 .bgColor {
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+
+.transition-container {
+        animation: slide-up 0.5s ease-out;
+        /* 过渡动画 */
+        position: relative;
+        /* 相对定位 */
+        top: 0;
+        /* 初始位置在视口底部之外 */
+    }
+
+    @keyframes slide-up {
+        0% {
+            top: 100vh;
+            /* 初始位置在视口底部之外 */
+        }
+
+        100% {
+            top: 0;
+            /* 结束位置为视口顶部 */
+        }
+    }
 </style>

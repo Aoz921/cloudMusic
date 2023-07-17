@@ -88,6 +88,7 @@
     async created() {
       this.switchCheckStatus = store.get("switch");
       this.data = await playlistTrackAll(this.$route.query.id.replace(":id="), "");
+      console.log(this.$route.query.id);
       songInfo(this.$route.query.id).then((res) => {
           console.log(res);
           this.fetch = res.data.songs;

@@ -29,7 +29,7 @@ export default {
       return true;
     },
     }
-
+  
         
     
 };
@@ -38,4 +38,6 @@ export default {
 @tailwind base;
 @tailwind utilities;
 @tailwind components;
+
+
 </style>

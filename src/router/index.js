@@ -49,7 +49,11 @@ const router = new VueRouter({
       // 懒加载组件文件
       component: () => import('@/views/Playsong.vue'),
     },
-
+    {
+      path: '/Mv',
+      // 懒加载组件文件
+      component: () => import('@/views/MV/MvList.vue'),
+    },
 
 
   ]

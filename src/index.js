@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import './index.css';
 import { Icon } from '@iconify/vue2';
-import { Swipe, SwipeItem,Button,NoticeBar,Popup,Area, Cell, CellGroup, } from 'vant';
+import { Swipe, SwipeItem,Button,NoticeBar,Popup,Area, Cell, CellGroup,Tab, Tabs } from 'vant';
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Drawer from '@/components/Drawer.vue';
@@ -23,7 +23,7 @@ Vue.use(Vant);
 dayjs.extend(relativeTime);
 Vue.prototype.dayjs = dayjs;
 Vue.component('Icon', Icon);
-Vue.use(Swipe).use(SwipeItem).use(Button).use(Popup).use(Area).use(Cell).use(CellGroup).use(Circle).use(NoticeBar);
+Vue.use(Swipe).use(SwipeItem).use(Button).use(Popup).use(Area).use(Cell).use(CellGroup).use(Circle).use(NoticeBar).use(Tab).use(Tabs);
 Vue.component('Drawer',Drawer)
 
 // Vue.extend给Vue构造函数配置项设置默认值

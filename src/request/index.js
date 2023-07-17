@@ -66,3 +66,9 @@ export const getMP3 = (id) =>
 export const playlistTrackAll = (id) => http.get('/playlist/track/all',{params:{id}})
 
 export const updateinfo = (info) => http.get('/user/update',{params:{...info}})
+
+// MV排行榜
+export const mvlist = (area) => http.get("/top/mv",{params:{limit:50,area}})
+
+// 歌词
+export const lyricText = (id) => http.get("/lyric",{params:{id}})
